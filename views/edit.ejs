@@ -1,0 +1,46 @@
+<%- include('./partials/header.ejs') %>
+    <div class="container mx-auto ">
+        <div class="max-w-md mx-auto bg-white p-6 border border-gray-300 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Create New Hisaab</h2>
+            <form action="/hisaab/edit/<%= hisaab._id %>" method="post">
+                <div class="mb-3">
+                    <input value="<%= hisaab.title %>" name="title" type="text" placeholder="Shopping Hisaab, Ghar ka Kharch..."
+                        class="w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-3">
+                    <textarea  name="description" placeholder="Daal, Aata, Cheeni"
+                        class="resize-none w-full p-2 border border-gray-300 rounded h-28"><%= hisaab.description %>"</textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="inline-flex items-center">
+                        <input 
+                        <% if(hisaab.encrypted){ %> checked <% } %>           
+                            name="encrypted" type="checkbox" class="form-checkbox">
+                        <span class="ml-2">Encrypt this file</span>
+                    </label>
+                    <input value="<%= hisaab.passcode %>" name="passcode" type="password" placeholder="Passcode"
+                        class="w-full mt-2 p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-3">
+                    <label class="inline-flex items-center">
+                        <input
+                        <% if(hisaab.shareable){ %> checked<% } %>   
+                        name="shareable" type="checkbox" class="form-checkbox">
+                        <span class="ml-2">Shareable file?</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="inline-flex items-center">
+                        <input 
+                        <% if(hisaab.encrypted){ %> checked<% } %>   
+                        name="editpermissions" type="checkbox" class="form-checkbox">
+                        <span class="ml-2">Edit permissions.</span>
+                    </label>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Create New Hisaab</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('./partials/footer.ejs') %>

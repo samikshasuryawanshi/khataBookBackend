@@ -1,0 +1,51 @@
+<%- include('./partials/header.ejs') %>
+    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg mt-10">
+        <div
+            class="absolute copieddiv hidden top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2  rounded-md">
+            <h3 class="text-blue-800 text-l">
+                link copied
+            </h3>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Khaatabook</h1>
+            <div class="flex space-x-4">
+                <% if(hisaab.encrypted){ %>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Encrypted</button>
+               <% }else{ %>
+                <button class="bg-teal-600 text-white px-4 py-2 rounded">Available</button>
+               <% } %>
+                <button class="sharebtn text-gray-700 px-4 py-2 rounded flex items-center space-x-2">
+                    <span id="copyUrl">Share as a link</span>
+                </button>
+                <a href="/hisaab/delete/<%= hisaab._id %>" class="bg-red-500  pointer:cursor text-white px-4 py-2 rounded">Delete</a>
+                <a href="/hisaab/edit/<%= hisaab._id %>" class="bg-yellow-400  pointer:cursor text-white px-4 py-2 rounded">Edit</a>
+            </div>
+        </div>
+        <div class="text-gray-500 mb-4">Created on <%= hisaab.createdAt.getDate() %>-<%= hisaab.createdAt.getMonth() + 1 %>-<%= hisaab.createdAt.getFullYear() %></div>
+        <h2 class="text-xl font-semibold mb-2"><%= hisaab.title %></h2>
+        <p class="text-gray-700"><%= hisaab.description %></p>
+    </div>
+
+
+    <script>
+        var timer;
+        const sharebtn = document.querySelector(".sharebtn");
+    
+        sharebtn.addEventListener("click", function (e) {
+            clearTimeout(timer);
+
+            document.querySelector(".copieddiv")
+                .classList.remove("hidden");
+
+            timer = setTimeout(function () {
+                document.querySelector(".copieddiv")
+                    .classList.add("hidden");
+            }, 3000)
+        })
+
+        document.querySelector("#copyUrl").addEventListener("click",function(event){
+            navigator.clipboard.writeText(window.location.href)
+        })
+    </script>
+
+    <%- include('./partials/footer.ejs') %>

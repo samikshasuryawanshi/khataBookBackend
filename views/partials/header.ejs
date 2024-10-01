@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="navbar flex justify-between w-full px-20 py-10">
+        <h3 class="flex gap-2 items-center "> <img class="h-10" src="https://www.freeiconspng.com/thumbs/book-icon/book-icon-black-good-galleries--24.jpg" alt="">  KhaataBook</h3>
+        <% var error = typeof error === 'undefined' ? "" : error %>
+        <% if(error.length > 0){ %>
+            <div class="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2  rounded-md">
+                <h3 class="text-red-500">
+                    <%= error %>
+                </h3>
+            </div>
+        <% } %>
+       <% var isLoggedin = typeof isLoggedin === 'undefined' ? true : false %>
+       <% if(isLoggedin){ %>
+        <div class="links flex gap-4">
+            <a href="/">Home</a>
+            <a href="/hisaab/create">Create new hisaab</a>
+            <a class="text-red-500" href="/logout">Logout</a>
+        </div>
+       <% } %>
+    </div>
